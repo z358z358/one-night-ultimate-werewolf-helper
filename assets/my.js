@@ -1,8 +1,117 @@
+var app = new Vue({
+    el: '#app',
+    data: {
+        status: { playing: false, change: false, listMore: false },
+        settings: { speed: 1, speaker: 'Bruce' },
+        checkList: { doppelganger: 1, drunk: 1, insomniac: 1, mason: 1, minion: 1, robber: 1, seer: 1, troublemaker: 1 },
+        voiceCount: 0,
+        voices: {},
+        audio: {},
+    },
+    computed: {
+        modalWork: function() {
+            //return (this.my.works) ? this.my.works[this.modalIndex] : {};
+        }
+    },
+
+    filters: {
+        lowercase: function(string) {
+            return string.toLowerCase();
+        }
+    },
+
+    watch: {
+        checkList: {
+            handler: function() {
+                this.$nextTick(function() {
+                    window.location.hash = $("#settings").serialize();
+                });
+
+            },
+            deep: true,
+        },
+        settings: {
+            handler: function() {
+                window.location.hash = $("#settings").serialize();
+            },
+            deep: true,
+        }
+    },
+
+    mounted: function() {
+        $("#share").jsSocials({
+            shares: ["twitter", "facebook", "messenger", "line"]
+        });
+
+        this.voices = audiojs.createAll({ trackEnded: this.playVoice });
+        this.audio = this.voices[0];
+
+        $("#bind-img").load(this.resizeHeight);
+        $(window).resize(this.resizeHeight);
+        this.resizeHeight();
+
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+            var urlSetting = JSON.parse('{"' + decodeURI(hash).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+                //console.log(urlSetting);
+            for (var i in urlSetting) {
+                if (this.checkList[i]) {
+                    this.checkList[i] = urlSetting[i];
+                } else if (this.settings[i]) {
+                    this.settings[i] = urlSetting[i];
+                }
+            }
+        }
+
+        this.init();
+    },
+
+    methods: {
+        init: function() {},
+
+        resizeHeight: function() {
+            $('.one-card').css('height', $('.back').height());
+        },
+
+        clickCard: function(role) {
+            this.checkList[role] = this.checkList[role] ? 0 : 1;
+        },
+
+        startVoice: function() {
+            if (this.status.playing) {
+                this.audio.pause();
+                this.audio.currentTime = 0;
+                this.voiceCount = 0;
+                this.status.playing = false;
+            } else {
+                this.status.voiceCount = 0;
+                this.playVoice();
+            }
+        },
+
+        playVoice: function() {
+            this.status.playing = true;
+            this.voiceCount++;
+            if (this.voiceCount > 12) {
+                this.voiceCount = 0;
+                this.status.playing = false;
+                return;
+            }
+            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?032901';
+            this.audio.load(audioSrc);
+            $("audio")[0].playbackRate = this.settings.speed;
+            this.audio.play();
+        }
+    }
+});
+
+
+/*
 $(function() {
     var hash, changeFlag = false,
         playingFlag = false;
     var speed, PitchSign, Speaker, PitchLevel, PitchScale;
-    var oberon, mordred, percival, mormna;
+    var doppelganger, drunk, insomniac, mason;
     var checkList = ['oberon', 'mordred', 'percival', 'mormna'];
     var voiceCount = 0,
         voices, audio;
@@ -122,4 +231,4 @@ $(function() {
     function resizeHeight() {
         $('.one-card').css('height', $('.back').height());
     }
-});
+});*/

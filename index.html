@@ -33,125 +33,138 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div id="app">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">一夜終極狼人小幫手</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=".">一夜終極狼人小幫手</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="javascript:void(0)" data-toggle="modal" data-target="#ins-modal">使用說明</a></li>
+                        <li class=""><a href="javascript:void(0)" data-toggle="modal" data-target="#rule-modal">一夜終極狼人規則</a></li>
+                        <li>
+                            <div id="share"></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="https://resume.onininon.com/" target="_blank" titile="關於作者"><i class="fa fa-id-card"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">一夜終極狼人小幫手</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href=".">一夜終極狼人小幫手</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class=""><a href="javascript:void(0)" data-toggle="modal" data-target="#ins-modal">使用說明</a></li>
-                    <li class=""><a href="javascript:void(0)" data-toggle="modal" data-target="#rule-modal">一夜終極狼人規則</a></li>
-                    <li>
-                        <div id="share"></div>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="https://resume.onininon.com/" target="_blank" titile="關於作者"><i class="fa fa-id-card"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
-    <div class="container">
-        <!-- github another -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="7231649277" data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="one-card text-center col-md-3 col-xs-3">
-            <div class="flip-container click-card together" data-role="doppelganger">
-                <div class="flipper">
-                    <div class="front">
-                        <img class="img-thumbnail" src="images/doppelganger.jpg">
-                    </div>
-                    <div class="back">
-                        <img id="bind-img" class="img-thumbnail" src="images/back.png">
+            <!-- github another -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="7231649277" data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <div class="one-card text-center col-md-3 col-xs-4" v-for="(val,role) in checkList">
+                <div class="flip-container click-card" :class="{hover: val == 0}" @click="clickCard(role)">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="img-thumbnail" :src="'images/'+role+'.jpg'">
+                        </div>
+                        <div class="back">
+                            <img id="bind-img" class="img-thumbnail" src="images/back.jpg">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr>
-        <p id="sheep-text">
-            請所有人閉上眼睛低頭雙手握拳放在自己面前，<span class="more only-oberon">除了奧伯倫以外</span>請壞人張開眼睛確認彼此身份，5，4，3，2，1，請壞人閉上眼睛，<span class="more only-mordred">除了莫德雷德之外</span>請所有壞人豎起你們的大拇指，請梅林張開眼睛確認壞人身份，5，4，3，2，1，請壞人收起大拇指請梅林閉上眼睛<span class="more only-percival">，請梅林和莫甘娜豎起你們的大拇指，請派希維爾張開眼睛確認身分，5，4，3，2，1，請梅林和莫甘娜收回大拇指請派希維爾閉上眼睛</span>，請所有人張開眼睛遊戲開始。
-        </p>
-        <hr>
-        <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg">播放語音</button>
-        <div id="media" class="col-xs-3"></div>
-        <button id="reset" class="btn text-danger col-xs-3">初始化</button>
-        <div class="clearfix"></div>
-        <hr>
-        <form id="settings">
-            <h5>選擇語者<small> (來源:<a href="http://tts.itri.org.tw/index.php" target="_blank">工研院</a>) </small></h5>
-            <div class="form-group">
-                <label class="radio-inline">
-                    <input type="radio" name="Speaker" value="Bruce" checked="">Bruce</label>
-                <label class="radio-inline">
-                    <input type="radio" name="Speaker" value="Angela">Angela</label>
-                <label class="radio-inline">
-                    <input type="radio" name="Speaker" value="AKoan">AKoan(台語)</label>
-            </div>
-            <div class="form-group">
-                <label>語音速度 (
-                    <span id="speed"></span> )</label>
-                <input class="bar" type="range" name="speed" min="0.5" max="2" value="1" step="0.1" />
-            </div>
-            <input type="hidden" name="oberon" value="1">
-            <input type="hidden" name="mordred" value="1">
-            <input type="hidden" name="percival" value="1">
-            <input type="hidden" name="mormna" value="1">
-        </form>
-        <div>
+            <div class="clearfix"></div>
+            <hr>
+            <p id="sheep-text">
+                請所有人閉上雙眼
+                <span v-show="checkList.doppelganger == 1">，請化身幽靈張開眼睛，並看另一位玩家的牌，你現在就是那個角色，如果你看到預言家，強盜，搗蛋鬼，或是酒鬼，請現在執行角色動作，十，9，8，7，6，5，4，3，2，1，如果你現在是爪牙，請繼續張開眼睛，如果不是，請閉上眼睛，請狼人豎起你們的大拇指讓化身成爪牙的玩家可以知道你們在哪，5，4，3，2，1，請狼人收起大拇指請化身幽靈閉上眼睛</span>，請狼人張開眼睛確認彼此身份，如果場上只有一位狼人，你可以看中間的其中一張牌，5，4，3，2，1，請狼人閉上眼睛
+                <span v-show="checkList.minion == 1">，請爪牙張開眼睛，請狼人豎起你們的大拇指請爪牙確認狼人在哪，5，4，3，2，1，請狼人收起大拇指請爪牙閉上眼睛</span>
+                <span v-show="checkList.mason == 1">，請守夜人張開眼睛並確認另一位守夜人，5，4，3，2，1，請守夜人閉上眼睛</span>
+                <span v-show="checkList.seer == 1">，請預言家張開眼睛，你可以看一位玩家的牌或看中間的兩張牌，5，4，3，2，1，請預言家閉上眼睛</span>
+                <span v-show="checkList.robber == 1">，請強盜張開眼睛，你可以與另一位玩家交換牌，並看你目前的新牌，5，4，3，2，1，請強盜閉上眼睛</span>
+                <span v-show="checkList.troublemaker == 1">，請搗蛋鬼張開眼睛，你可以交換其他兩位玩家的牌，5，4，3，2，1，請搗蛋鬼閉上眼睛</span>
+                <span v-show="checkList.drunk == 1">，請酒鬼張開眼睛，你可以把自己的牌和中間的牌交換，5，4，3，2，1，請酒鬼閉上眼睛</span>
+                <span v-show="checkList.insomniac == 1">，請失眠者張開眼睛，請確認自己的牌是什麼身份，5，4，3，2，1，請失眠者閉上眼睛</span>
+                <span v-show="checkList.doppelganger == 1">，化身幽靈，如果你剛剛看到的牌是失眠者，請現在張開眼睛確認自己的牌是什麼身份，5，4，3，2，1，請化身幽靈閉上眼睛</span>
+                ，請所有人保持閉者眼睛並伸出手碰到你的牌，請安靜的小幅度移動你的牌，請所有人張開眼睛遊戲開始。
+            </p>
+            <hr>
+            <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg" :class="{'btn-danger':status.playing}" v-text="(status.playing)?'停止播放':'播放語音'" @click="startVoice"></button>
+            <div id="media" class="col-xs-3"></div>
+            <button id="reset" class="btn text-danger col-xs-3">初始化</button>
+            <div class="clearfix"></div>
+            <hr>
+            <form id="settings">
+                <h5>選擇語者<small> (來源:<a href="http://tts.itri.org.tw/index.php" target="_blank">工研院</a>) </small></h5>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="speaker" value="Bruce" v-model="settings.speaker">Bruce</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="speaker" value="Angela" v-model="settings.speaker">Angela</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="speaker" value="AKoan" v-model="settings.speaker">AKoan(台語)</label>
+                </div>
+                <div class="form-group">
+                    <label>語音速度 (
+                        <span v-text="settings.speed"></span> )</label>
+                    <input class="bar" type="range" name="speed" min="0.5" max="2" value="1" step="0.1" v-model="settings.speed" />
+                </div>
+                <input v-for="(val,role) in checkList" :name="role" v-model="checkList[role]" type="hidden" :value="val">
+            </form>
             <div>
-                <hr />
-                <div class="fb-comments" data-href="https://z358z358.github.io/avalon-helper/" data-numposts="5"></div>
-            </div>
-        </div>
-        <div class="voices hidden">
-            <audio preload></audio>
-        </div>
-        <hr />
-        <!-- github2 -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="5554403276" data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div id="fb-root"></div>
-    </div>
-    <!-- /.container -->
-    <!-- 規則 -->
-    <div class="modal fade" id="rule-modal" tabindex="-1" role="dialog" aria-labelledby="rule-modalLabal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="users-modalLabel">規則</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/cuUys0SnwXs?rel=0" frameborder="0" allowfullscreen></iframe></div>
-                    <a target="_blank" href="http://mj9981168.pixnet.net/blog/post/196168065">部落格版本：阿瓦隆(the-resistance：avalon)</a>
+                <div>
+                    <hr />
+                    <!--<div class="fb-comments" data-href="https://z358z358.github.io/one-night-ultimate-werewolf-helper/" data-numposts="5"></div>-->
                 </div>
             </div>
+            {{$data|json}}
+            <div class="voices hidden">
+                <audio preload></audio>
+            </div>
+            <hr />
+            <!-- github2 -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="5554403276" data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <div id="fb-root"></div>
         </div>
-    </div>
-    <!-- 說明 -->
-    <div class="modal fade" id="ins-modal" tabindex="-1" role="dialog" aria-labelledby="ins-modalLabal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="users-modalLabel">使用說明</h4>
+        <!-- /.container -->
+        <!-- 規則 -->
+        <div class="modal fade" id="rule-modal" tabindex="-1" role="dialog" aria-labelledby="rule-modalLabal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="users-modalLabel">規則</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/cuUys0SnwXs?rel=0" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <a target="_blank" href="http://mj9981168.pixnet.net/blog/post/196168065">部落格版本：阿瓦隆(the-resistance：avalon)</a>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>將沒使用的角色排覆蓋(點擊即可)，然後按“播放語音”按鈕</p>
+            </div>
+        </div>
+        <!-- 說明 -->
+        <div class="modal fade" id="ins-modal" tabindex="-1" role="dialog" aria-labelledby="ins-modalLabal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="users-modalLabel">使用說明</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>將沒使用的角色排覆蓋(點擊即可)，然後按“播放語音”按鈕</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,6 +179,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
     <script src="audiojs/audio.min.js?032401"></script>
+    <script src="assets/vue.min.js"></script>
     <script src="assets/my.js?032601"></script>
     <script>
     (function(d, s, id) {
