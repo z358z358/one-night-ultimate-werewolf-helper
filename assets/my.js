@@ -3,7 +3,7 @@ var app = new Vue({
     data: {
         status: { playing: false, change: false, listMore: false },
         settings: { speed: 1, speaker: 'Bruce' },
-        checkList: { doppelganger: 1, drunk: 1, insomniac: 1, mason: 1, minion: 1, robber: 1, seer: 1, troublemaker: 1 },
+        checkList: { doppelganger: 1, minion: 1, mason: 1, seer: 1, robber: 1, troublemaker: 1, drunk: 1, insomniac: 1 },
         voiceCount: 0,
         voices: {},
         audio: {},
