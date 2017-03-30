@@ -23,6 +23,9 @@ var app = new Vue({
     watch: {
         checkList: {
             handler: function() {
+                if (this.status.playing) {
+                    this.startVoice();
+                }
                 this.$nextTick(function() {
                     window.location.hash = $("#settings").serialize();
                 });
@@ -32,6 +35,9 @@ var app = new Vue({
         },
         settings: {
             handler: function() {
+                if (this.status.playing) {
+                    this.startVoice();
+                }
                 window.location.hash = $("#settings").serialize();
             },
             deep: true,
@@ -97,7 +103,7 @@ var app = new Vue({
                 this.status.playing = false;
                 return;
             }
-            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?032901';
+            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?1';
             this.audio.load(audioSrc);
             $("audio")[0].playbackRate = this.settings.speed;
             this.audio.play();
