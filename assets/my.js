@@ -98,12 +98,24 @@ var app = new Vue({
         playVoice: function() {
             this.status.playing = true;
             this.voiceCount++;
+            if (this.voiceCount == 2 && this.checkList.doppelganger == 0 ||
+                this.voiceCount == 4 && this.checkList.minion == 0 ||
+                this.voiceCount == 5 && this.checkList.mason == 0 ||
+                this.voiceCount == 6 && this.checkList.seer == 0 ||
+                this.voiceCount == 7 && this.checkList.robber == 0 ||
+                this.voiceCount == 8 && this.checkList.troublemaker == 0 ||
+                this.voiceCount == 9 && this.checkList.drunk == 0 ||
+                this.voiceCount == 10 && this.checkList.insomniac == 0 ||
+                this.voiceCount == 11 && this.checkList.doppelganger == 0) {
+                this.playVoice();
+                return;
+            }
             if (this.voiceCount > 12) {
                 this.voiceCount = 0;
                 this.status.playing = false;
                 return;
             }
-            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?1';
+            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?12';
             this.audio.load(audioSrc);
             $("audio")[0].playbackRate = this.settings.speed;
             this.audio.play();
