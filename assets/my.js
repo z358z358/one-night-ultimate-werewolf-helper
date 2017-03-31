@@ -106,7 +106,7 @@ var app = new Vue({
                 this.voiceCount == 8 && this.checkList.troublemaker == 0 ||
                 this.voiceCount == 9 && this.checkList.drunk == 0 ||
                 this.voiceCount == 10 && this.checkList.insomniac == 0 ||
-                this.voiceCount == 11 && this.checkList.doppelganger == 0) {
+                this.voiceCount == 11 && (this.checkList.doppelganger == 0 || this.checkList.insomniac == 0)) {
                 this.playVoice();
                 return;
             }

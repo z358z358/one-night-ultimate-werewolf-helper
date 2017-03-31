@@ -95,7 +95,7 @@
                 <span v-show="checkList.troublemaker == 1">，請搗蛋鬼張開眼睛，你可以交換其他兩位玩家的牌，5，4，3，2，1，請搗蛋鬼閉上眼睛</span>
                 <span v-show="checkList.drunk == 1">，請酒鬼張開眼睛，你可以把自己的牌和中間的牌交換，5，4，3，2，1，請酒鬼閉上眼睛</span>
                 <span v-show="checkList.insomniac == 1">，請失眠者張開眼睛，請確認自己的牌是什麼身份，5，4，3，2，1，請失眠者閉上眼睛</span>
-                <span v-show="checkList.doppelganger == 1">，化身幽靈，如果你剛剛看到的牌是失眠者，請現在張開眼睛確認自己的牌是什麼身份，5，4，3，2，1，請化身幽靈閉上眼睛</span> ，請所有人保持閉者眼睛並伸出手碰到你的牌，請安靜的小幅度移動你的牌，請所有人張開眼睛遊戲開始。
+                <span v-show="checkList.doppelganger == 1 && checkList.insomniac == 1">，化身幽靈，如果你剛剛看到的牌是失眠者，請現在張開眼睛確認自己的牌是什麼身份，5，4，3，2，1，請化身幽靈閉上眼睛</span> ，請所有人保持閉者眼睛並伸出手碰到你的牌，請安靜的小幅度移動你的牌，請所有人張開眼睛遊戲開始。
             </p>
             <hr>
             <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg" :class="{'btn-danger':status.playing}" v-text="(status.playing)?'停止播放':'播放語音'" @click="startVoice"></button>
