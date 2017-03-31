@@ -3,7 +3,27 @@ var app = new Vue({
     data: {
         status: { playing: false, change: false, listMore: false },
         settings: { speed: 1, speaker: 'Bruce' },
-        checkList: { doppelganger: 1, minion: 1, mason: 1, seer: 1, robber: 1, troublemaker: 1, drunk: 1, insomniac: 1 },
+        checkList: {
+            sentinel: { on: 0, ver: 2 },
+            doppelganger: { on: 1, ver: 1 },
+            dream: { on: 0, ver: 2 },
+            alpha: { on: 0, ver: 2 },
+            mystic: { on: 0, ver: 2 },
+            minion: { on: 1, ver: 1 },
+            mason: { on: 1, ver: 1 },
+            seer: { on: 1, ver: 1 },
+            apprentice: { on: 0, ver: 2 },
+            paranormal: { on: 0, ver: 2 },
+            robber: { on: 1, ver: 1 },
+            witch: { on: 0, ver: 2 },
+            troublemaker: { on: 1, ver: 1 },
+            idiot: { on: 0, ver: 2 },
+            aura: { on: 0, ver: 3 },
+            drunk: { on: 1, ver: 1 },
+            insomniac: { on: 1, ver: 1 },
+            revealer: { on: 0, ver: 2 },
+            curator: { on: 0, ver: 2 },
+        },
         voiceCount: 0,
         voices: {},
         audio: {},
@@ -62,7 +82,7 @@ var app = new Vue({
                 //console.log(urlSetting);
             for (var i in urlSetting) {
                 if (this.checkList[i]) {
-                    this.checkList[i] = urlSetting[i];
+                    this.checkList[i].on = parseInt(urlSetting[i]);
                 } else if (this.settings[i]) {
                     this.settings[i] = urlSetting[i];
                 }
@@ -80,7 +100,7 @@ var app = new Vue({
         },
 
         clickCard: function(role) {
-            this.checkList[role] = this.checkList[role] ? 0 : 1;
+            this.checkList[role].on = this.checkList[role].on ? 0 : 1;
         },
 
         startVoice: function() {
@@ -98,24 +118,16 @@ var app = new Vue({
         playVoice: function() {
             this.status.playing = true;
             this.voiceCount++;
-            if (this.voiceCount == 2 && this.checkList.doppelganger == 0 ||
-                this.voiceCount == 4 && this.checkList.minion == 0 ||
-                this.voiceCount == 5 && this.checkList.mason == 0 ||
-                this.voiceCount == 6 && this.checkList.seer == 0 ||
-                this.voiceCount == 7 && this.checkList.robber == 0 ||
-                this.voiceCount == 8 && this.checkList.troublemaker == 0 ||
-                this.voiceCount == 9 && this.checkList.drunk == 0 ||
-                this.voiceCount == 10 && this.checkList.insomniac == 0 ||
-                this.voiceCount == 11 && (this.checkList.doppelganger == 0 || this.checkList.insomniac == 0)) {
+            if ($("#sheep-text span:nth-child(" + this.voiceCount + ")").css('display') === 'none') {
                 this.playVoice();
                 return;
             }
-            if (this.voiceCount > 12) {
+            if (this.voiceCount > 27) {
                 this.voiceCount = 0;
                 this.status.playing = false;
                 return;
             }
-            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?12';
+            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?123';
             this.audio.load(audioSrc);
             $("audio")[0].playbackRate = this.settings.speed;
             this.audio.play();
