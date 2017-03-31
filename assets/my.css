@@ -1,6 +1,9 @@
     body {
         padding-top: 50px;
     }
+    #sheep-text span{
+        /*display: block;*/
+    }
     
     .starter-template {
         padding: 40px 15px;
@@ -41,7 +44,7 @@
     /* flip the pane when hovered */
     
     .flip-container.hover .flipper {
-        transform: rotateY(180deg);
+        opacity:0.4;
     }
     
     .flip-container,
@@ -74,5 +77,6 @@
     /* back, initially hidden pane */
     
     .back {
+        display: none;
         transform: rotateY(180deg);
     }
