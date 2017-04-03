@@ -5,6 +5,9 @@
         /*display: block;*/
     }
     
+    .playing .hover-one{
+        display: none;
+    }
     .starter-template {
         padding: 40px 15px;
         text-align: center;

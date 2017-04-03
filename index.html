@@ -65,14 +65,17 @@
                 <!--/.nav-collapse -->
             </div>
         </nav>
-        <div class="container">
+        <div class="container" :class="{playing:status.playing}">
             <!-- github another -->
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="7231649277" data-ad-format="auto"></ins>
             <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
             <h1 class="hidden">一夜終極狼人小幫手</h1>
-            <div class="one-card text-center col-md-2 col-xs-4" v-for="(val,role) in checkList">
+            <hr>
+            <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg" :class="{'btn-danger':status.playing}" v-text="(status.playing)?'停止播放':'播放語音'" @click="startVoice"></button>
+            <div class="clearfix"></div>
+            <div class="one-card text-center col-md-2 col-xs-4" :class="{'hover-one': val.on == 0}" v-for="(val,role) in checkList">
                 <div class="flip-container click-card" :class="{hover: val.on == 0}" @click="clickCard(role)">
                     <div class="flipper">
                         <div class="front">
@@ -84,9 +87,6 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <hr>
-            <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg" :class="{'btn-danger':status.playing}" v-text="(status.playing)?'停止播放':'播放語音'" @click="startVoice"></button>
             <div class="clearfix"></div>
             <hr>
             <p id="sheep-text">

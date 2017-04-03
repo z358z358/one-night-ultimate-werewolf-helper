@@ -118,7 +118,9 @@ var app = new Vue({
         playVoice: function() {
             this.status.playing = true;
             this.voiceCount++;
-            if ($("#sheep-text span:nth-child(" + this.voiceCount + ")").css('display') === 'none') {
+            $("#sheep-text span").removeClass('text-danger');
+            var now = $("#sheep-text span:nth-child(" + this.voiceCount + ")");
+            if (now.css('display') === 'none') {
                 this.playVoice();
                 return;
             }
@@ -127,6 +129,7 @@ var app = new Vue({
                 this.status.playing = false;
                 return;
             }
+            now.addClass('text-danger');
             var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?123';
             this.audio.load(audioSrc);
             $("audio")[0].playbackRate = this.settings.speed;
