@@ -124,13 +124,13 @@ var app = new Vue({
                 this.playVoice();
                 return;
             }
-            if (this.voiceCount > 27) {
+            if (this.voiceCount > 28) {
                 this.voiceCount = 0;
                 this.status.playing = false;
                 return;
             }
             now.addClass('text-danger');
-            var audioSrc = 'voices/' + this.settings.speaker + '/' + this.voiceCount + '.mp3?123';
+            var audioSrc = 'voices/' + this.settings.speaker + '/' + now.data('count') + '.mp3?123';
             this.audio.load(audioSrc);
             $("audio")[0].playbackRate = this.settings.speed;
             this.audio.play();

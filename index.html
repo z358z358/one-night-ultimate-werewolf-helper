@@ -90,33 +90,34 @@
             <div class="clearfix"></div>
             <hr>
             <p id="sheep-text">
-                <span>請所有人閉上雙眼</span>
-                <span v-show="checkList.sentinel.on == 1">，哨兵，醒來，你可以放置盾牌標記在任何一個玩家的牌上，除了你自己，5，4，3，2，1，哨兵，閉上你的眼睛</span>
-                <span v-show="checkList.doppelganger.on == 1">，化身幽靈，醒來查看一個玩家的牌，你現在就是那個角色，如果新的角色有夜晚行動，現在執行，十，9，8，7，6，5，4，3，2，1，如果你現在是爪牙，請繼續張開眼睛，如果不是，請閉上眼睛，請狼人豎起你們的大拇指讓化身成爪牙的玩家可以知道你們在哪，5，4，3，2，1，請狼人收起大拇指請化身幽靈閉上眼睛</span>
-                <span v-show="checkList.dream.on == 1">，貪睡狼請豎起你的大拇指，除了貪睡狼之外</span>
-                <span>，請狼人張開眼睛確認彼此身份，如果場上只有一位狼人，你可以看中間的其中一張牌，5，4，3，2，1，請狼人閉上眼睛</span>
-                <span v-show="checkList.dream.on == 1">，請貪睡狼收起大拇指</span>
-                <span v-show="checkList.alpha.on == 1">，阿爾法狼，醒來並把中央的狼人身分牌與一個其他玩家身份牌交換，5，4，3，2，1，請阿爾法狼閉上眼睛</span>
-                <span v-show="checkList.mystic.on == 1">，狼先知，醒來，你可以查看任何一個其他玩家的身份牌，5，4，3，2，1，請狼先知閉上眼睛</span>
-                <span v-show="checkList.minion.on == 1">，請爪牙張開眼睛，請狼人豎起你們的大拇指請爪牙確認狼人在哪，5，4，3，2，1，請狼人收起大拇指請爪牙閉上眼睛</span>
-                <span v-show="checkList.mason.on == 1">，請守夜人張開眼睛並確認另一位守夜人，5，4，3，2，1，請守夜人閉上眼睛</span>
-                <span v-show="checkList.seer.on == 1">，請預言家張開眼睛，你可以看一位玩家的牌或看中間的兩張牌，5，4，3，2，1，請預言家閉上眼睛</span>
-                <span v-show="checkList.apprentice.on == 1">，請見習預言家張開眼睛，你可以看中間的一張牌，5，4，3，2，1，請見習預言家閉上眼睛</span>
-                <span v-show="checkList.paranormal.on == 1">，靈異偵探，醒來，你可以看最多兩個玩家的身份牌，如果你看到狼人或者皮匠，你必須停止並成為狼人或皮匠，7，6，5，4，3，2，1，靈異偵探，閉上你的眼睛</span>
-                <span v-show="checkList.robber.on == 1">，請強盜張開眼睛，你可以與另一位玩家交換牌，並看你目前的新牌，5，4，3，2，1，請強盜閉上眼睛</span>
-                <span v-show="checkList.witch.on == 1">，女巫，醒來，你可以查看一張中央區域的身份牌，如果你這麼做，你必須把這張身份牌與任何一個玩家的身份牌交換，5，4，3，2，1，女巫，閉上你的眼睛</span>
-                <span v-show="checkList.troublemaker.on == 1">，請搗蛋鬼張開眼睛，你可以交換其他兩位玩家的牌，5，4，3，2，1，請搗蛋鬼閉上眼睛</span>
-                <span v-show="checkList.idiot.on == 1">，村莊白痴，醒來，你可以將除了自己的所有玩家身份牌向左或向右移動一個位置，十五，十四，十三，十二，十一，十，9，8，7，6，5，4，3，2，1，村莊白痴，閉上你的眼睛</span>
-                <span v-show="checkList.aura.on == 1">，循跡者，醒來，所有玩家，如果你查看或移動過任何身份牌，舉起你的大拇指，5，4，3，2，1，請所有玩家收起大拇指請循跡者閉上眼睛</span>
-                <span v-show="checkList.doppelganger.on == 1 && checkList.aura.on == 1">，化身幽靈，如果你剛剛看到的牌是循跡者，醒來，所有玩家，如果你查看或移動過任何身份牌，舉起你的大拇指，5，4，3，2，1，請所有玩家收起大拇指請化身幽靈閉上眼睛</span>
-                <span v-show="checkList.drunk.on == 1">，請酒鬼張開眼睛，你必須把自己的牌和中間的一張牌交換，5，4，3，2，1，請酒鬼閉上眼睛</span>
-                <span v-show="checkList.insomniac.on == 1">，請失眠者張開眼睛，請確認自己的牌是什麼身份，5，4，3，2，1，請失眠者閉上眼睛</span>
-                <span v-show="checkList.doppelganger.on == 1 && checkList.insomniac.on == 1">，化身幽靈，如果你剛剛看到的牌是失眠者，請現在張開眼睛確認自己的牌是什麼身份，5，4，3，2，1，請化身幽靈閉上眼睛</span>
-                <span v-show="checkList.revealer.on == 1">，揭秘者，醒來，你可以翻開任何一張其他玩家的身份牌正面朝上放置，如果顯示是狼人或皮匠，則翻回去，5，4，3，2，1，揭秘者，閉上妳的眼睛</span>
-                <span v-show="checkList.doppelganger.on == 1 && checkList.revealer.on == 1">，化身幽靈，如果你剛剛看到的牌是揭秘者，醒來，你可以翻開任何一張其他玩家的身份牌正面朝上放置，如果顯示是狼人或皮匠，則翻回去，5，4，3，2，1，請化身幽靈閉上眼睛</span>
-                <span v-show="checkList.curator.on == 1">，監護人，醒來，你可以將一個神器標示物正面朝下放在任何一個玩家的身份牌上，5，4，3，2，1，監護人，閉上妳的眼睛</span>
-                <span v-show="checkList.curator.on == 1 && checkList.revealer.on == 1">，化身幽靈，如果你剛剛看到的牌是監護人，醒來，你可以將一個神器標示物正面朝下放在任何一個玩家的身份牌上，但不能放在已有神器的身份牌上，5，4，3，2，1，請化身幽靈閉上眼睛</span>
-                <span>，請所有人保持閉者眼睛並伸出手碰到你的牌，請安靜的小幅度移動你的牌，5，4，3，2，1，請所有人張開眼睛遊戲開始。</span>
+                <span data-count="1">請所有人閉上雙眼</span>
+                <span data-count="2" v-show="checkList.sentinel.on == 1">，哨兵，醒來，你可以放置盾牌標記在任何一個玩家的牌上，除了你自己，5，4，3，2，1，哨兵，閉上你的眼睛</span>
+                <span data-count="3" v-show="checkList.doppelganger.on == 1 && checkList.minion.on == 1">，化身幽靈，醒來查看一個玩家的牌，你現在就是那個角色，如果新的角色有夜晚行動，現在執行，十，9，8，7，6，5，4，3，2，1，如果你現在是爪牙，請繼續張開眼睛，如果不是，請閉上眼睛，請狼人豎起你們的大拇指讓化身成爪牙的玩家可以知道你們在哪，5，4，3，2，1，請狼人收起大拇指請化身幽靈閉上眼睛</span>
+                <span data-count="28" v-show="checkList.doppelganger.on == 1 && checkList.minion.on != 1">，化身幽靈，醒來查看一個玩家的牌，你現在就是那個角色，如果新的角色有夜晚行動，現在執行，十，9，8，7，6，5，4，3，2，1，請化身幽靈閉上眼睛</span>
+                <span data-count="4" v-show="checkList.dream.on == 1">，貪睡狼請豎起你的大拇指，除了貪睡狼之外</span>
+                <span data-count="5">，請狼人張開眼睛確認彼此身份，如果場上只有一位狼人，你可以看中間的其中一張牌，5，4，3，2，1，請狼人閉上眼睛</span>
+                <span data-count="6" v-show="checkList.dream.on == 1">，請貪睡狼收起大拇指</span>
+                <span data-count="7" v-show="checkList.alpha.on == 1">，阿爾法狼，醒來並把中央的狼人身分牌與一個其他玩家身份牌交換，5，4，3，2，1，請阿爾法狼閉上眼睛</span>
+                <span data-count="8" v-show="checkList.mystic.on == 1">，狼先知，醒來，你可以查看任何一個其他玩家的身份牌，5，4，3，2，1，請狼先知閉上眼睛</span>
+                <span data-count="9" v-show="checkList.minion.on == 1">，請爪牙張開眼睛，請狼人豎起你們的大拇指請爪牙確認狼人在哪，5，4，3，2，1，請狼人收起大拇指請爪牙閉上眼睛</span>
+                <span data-count="10" v-show="checkList.mason.on == 1">，請守夜人張開眼睛並確認另一位守夜人，5，4，3，2，1，請守夜人閉上眼睛</span>
+                <span data-count="11" v-show="checkList.seer.on == 1">，請預言家張開眼睛，你可以看一位玩家的牌或看中間的兩張牌，5，4，3，2，1，請預言家閉上眼睛</span>
+                <span data-count="12" v-show="checkList.apprentice.on == 1">，請見習預言家張開眼睛，你可以看中間的一張牌，5，4，3，2，1，請見習預言家閉上眼睛</span>
+                <span data-count="13" v-show="checkList.paranormal.on == 1">，靈異偵探，醒來，你可以看最多兩個玩家的身份牌，如果你看到狼人或者皮匠，你必須停止並成為狼人或皮匠，7，6，5，4，3，2，1，靈異偵探，閉上你的眼睛</span>
+                <span data-count="14" v-show="checkList.robber.on == 1">，請強盜張開眼睛，你可以與另一位玩家交換牌，並看你目前的新牌，5，4，3，2，1，請強盜閉上眼睛</span>
+                <span data-count="15" v-show="checkList.witch.on == 1">，女巫，醒來，你可以查看一張中央區域的身份牌，如果你這麼做，你必須把這張身份牌與任何一個玩家的身份牌交換，5，4，3，2，1，女巫，閉上你的眼睛</span>
+                <span data-count="16" v-show="checkList.troublemaker.on == 1">，請搗蛋鬼張開眼睛，你可以交換其他兩位玩家的牌，5，4，3，2，1，請搗蛋鬼閉上眼睛</span>
+                <span data-count="17" v-show="checkList.idiot.on == 1">，村莊白痴，醒來，你可以將除了自己的所有玩家身份牌向左或向右移動一個位置，十五，十四，十三，十二，十一，十，9，8，7，6，5，4，3，2，1，村莊白痴，閉上你的眼睛</span>
+                <span data-count="18" v-show="checkList.aura.on == 1">，循跡者，醒來，所有玩家，如果你查看或移動過任何身份牌，舉起你的大拇指，5，4，3，2，1，請所有玩家收起大拇指請循跡者閉上眼睛</span>
+                <span data-count="19" v-show="checkList.doppelganger.on == 1 && checkList.aura.on == 1">，化身幽靈，如果你剛剛看到的牌是循跡者，醒來，所有玩家，如果你查看或移動過任何身份牌，舉起你的大拇指，5，4，3，2，1，請所有玩家收起大拇指請化身幽靈閉上眼睛</span>
+                <span data-count="20" v-show="checkList.drunk.on == 1">，請酒鬼張開眼睛，你必須把自己的牌和中間的一張牌交換，5，4，3，2，1，請酒鬼閉上眼睛</span>
+                <span data-count="21" v-show="checkList.insomniac.on == 1">，請失眠者張開眼睛，請確認自己的牌是什麼身份，5，4，3，2，1，請失眠者閉上眼睛</span>
+                <span data-count="22" v-show="checkList.doppelganger.on == 1 && checkList.insomniac.on == 1">，化身幽靈，如果你剛剛看到的牌是失眠者，請現在張開眼睛確認自己的牌是什麼身份，5，4，3，2，1，請化身幽靈閉上眼睛</span>
+                <span data-count="23" v-show="checkList.revealer.on == 1">，揭秘者，醒來，你可以翻開任何一張其他玩家的身份牌正面朝上放置，如果顯示是狼人或皮匠，則翻回去，5，4，3，2，1，揭秘者，閉上妳的眼睛</span>
+                <span data-count="24" v-show="checkList.doppelganger.on == 1 && checkList.revealer.on == 1">，化身幽靈，如果你剛剛看到的牌是揭秘者，醒來，你可以翻開任何一張其他玩家的身份牌正面朝上放置，如果顯示是狼人或皮匠，則翻回去，5，4，3，2，1，請化身幽靈閉上眼睛</span>
+                <span data-count="25" v-show="checkList.curator.on == 1">，監護人，醒來，你可以將一個神器標示物正面朝下放在任何一個玩家的身份牌上，5，4，3，2，1，監護人，閉上妳的眼睛</span>
+                <span data-count="26" v-show="checkList.curator.on == 1 && checkList.revealer.on == 1">，化身幽靈，如果你剛剛看到的牌是監護人，醒來，你可以將一個神器標示物正面朝下放在任何一個玩家的身份牌上，但不能放在已有神器的身份牌上，5，4，3，2，1，請化身幽靈閉上眼睛</span>
+                <span data-count="27">，請所有人保持閉者眼睛並伸出手碰到你的牌，請安靜的小幅度移動你的牌，5，4，3，2，1，請所有人張開眼睛遊戲開始。</span>
             </p>
             <hr>
             <button id="play-voice" class="col-xs-6 btn btn-primary btn-lg" :class="{'btn-danger':status.playing}" v-text="(status.playing)?'停止播放':'播放語音'" @click="startVoice"></button>
@@ -202,7 +203,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
     <script src="audiojs/audio.min.js?032401"></script>
     <script src="assets/vue.min.js"></script>
-    <script src="assets/my.js?033101"></script>
+    <script src="assets/my.js?0822"></script>
     <script>
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
